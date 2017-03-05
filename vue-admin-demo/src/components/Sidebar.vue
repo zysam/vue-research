@@ -12,7 +12,7 @@
 <script>
   export default {
     computed: {
-      time() {
+      time () {
         return this.$store.state.totalTime
       }
     }

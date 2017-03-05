@@ -6,6 +6,10 @@ import VueResource from 'vue-resource'
 
 import App from './App'
 import Home from './components/Home'
+import TimeEnties from './components/TimeEntries.vue'
+
+import store from './store'
+
 import 'bootstrap/dist/css/bootstrap.css'
 
 Vue.use(VueRouter)
@@ -19,6 +23,13 @@ const routes = [{
 }, {
   path: '/home',
   component: Home
+}, {
+  path: '/time-entries',
+  component: TimeEnties,
+  children: [{
+    path: 'log-time',
+    component: resolve => require(['./components/LogTime.vue'], resolve)
+  }]
 }]
 
 const router = new VueRouter({
@@ -29,5 +40,6 @@ const router = new VueRouter({
 new Vue({
   el: '#app',
   router,
+  store,
   ...App
 })
